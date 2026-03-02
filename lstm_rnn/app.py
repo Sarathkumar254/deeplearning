@@ -4,11 +4,19 @@ import pickle
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "next_word_lstm.h5")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer.pickle")
+
+
 #Load the LSTM Model
-model=load_model('next_word_lstm.h5')
+model=load_model(model_path)
 
 #3 Laod the tokenizer
-with open('tokenizer.pickle','rb') as handle:
+with open(tokenizer_path,'rb') as handle:
     tokenizer=pickle.load(handle)
 
 # Function to predict the next word
